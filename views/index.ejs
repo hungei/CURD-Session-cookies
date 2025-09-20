@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+
+<form class="row g-2 mb-3" method="get" action="/">
+  <div class="col-md-6">
+    <input name="q" value="<%= q %>" class="form-control" placeholder="Search product name...">
+  </div>
+  <div class="col-md-4">
+    <select name="supplier" class="form-select">
+      <option value="">All suppliers</option>
+      <% suppliers.forEach(s => { %>
+        <option value="<%= s._id %>" <%= supplier==s._id ? 'selected' : '' %>><%= s.name %></option>
+      <% }) %>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <button class="btn btn-primary w-100">Search</button>
+  </div>
+</form>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead><tr><th>Name</th><th>Price</th><th>Qty</th><th>Supplier</th></tr></thead>
+    <tbody>
+      <% products.forEach(p => { %>
+        <tr>
+          <td><%= p.name %></td>
+          <td><%= p.price %></td>
+          <td><%= p.quantity %></td>
+          <td><%= p.supplierId ? p.supplierId.name : 'N/A' %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+
+<h3><%= supplier && supplier._id ? 'Edit' : 'New' %> Supplier</h3>
+<form method="POST" action="<%= supplier && supplier._id ? '/suppliers/edit/'+supplier._id : '/suppliers/new' %>">
+  <div class="mb-3">
+    <label>Name</label>
+    <input name="name" class="form-control" value="<%= supplier.name || '' %>" required>
+  </div>
+  <div class="mb-3">
+    <label>Address</label>
+    <input name="address" class="form-control" value="<%= supplier.address || '' %>">
+  </div>
+  <div class="mb-3">
+    <label>Phone</label>
+    <input name="phone" type="tel" class="form-control" value="<%= supplier.phone || '' %>">
+  </div>
+  <button class="btn btn-success">Save</button>
+  <a href="/suppliers" class="btn btn-secondary">Cancel</a>
+</form>
+
+<%- include('../partials/footer') %>
